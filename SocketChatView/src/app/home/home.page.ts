@@ -9,6 +9,31 @@ import {ToastController} from '@ionic/angular';
 })
 export class HomePage implements OnInit{
 
+
+  contacts = [
+    {
+      name: 'Joe',
+      imageUri: 'https://randomuser.me/api/portraits/men/32.jpg'
+    },
+    {
+      name: 'Joe',
+      imageUri: 'https://randomuser.me/api/portraits/men/32.jpg'
+    },
+    {
+      name: 'Joe',
+      imageUri: 'https://randomuser.me/api/portraits/men/32.jpg'
+    },
+    {
+      name: 'Joe',
+      imageUri: 'https://randomuser.me/api/portraits/men/32.jpg'
+    },
+    {
+      name: 'Joe',
+      imageUri: 'https://randomuser.me/api/portraits/men/32.jpg'
+    },
+
+  ];
+
   message = '';
   messages = [];
   currentUser = '';

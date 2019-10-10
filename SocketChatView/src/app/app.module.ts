@@ -16,7 +16,7 @@ const config: SocketIoConfig = {url: 'http://localhost:3001', options: { } };
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, SocketIoModule.forRoot(config),],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, SocketIoModule.forRoot(config)],
   providers: [
     StatusBar,
     SplashScreen,

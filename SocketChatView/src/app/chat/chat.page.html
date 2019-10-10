@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button class="show-back-button"></ion-back-button>
+        </ion-buttons>
+    
+
+      <ion-row>
+        <ion-col size=3>
+          <ion-avatar>
+            <ion-img src='https://randomuser.me/api/portraits/men/32.jpg'></ion-img>
+          </ion-avatar>
+        </ion-col>
+        <ion-col size=9>
+            <h2>Joe</h2>
+        </ion-col>
+      </ion-row>
+    
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card class="ion-float-right">
+    <ion-card-content>
+      Message
+      <div class="ion-text-end">
+        <span>
+          3:54 pm
+        </span>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      Message
+      <div class="ion-text-end">
+        <span>
+          Joe
+        </span>
+        <span>
+          3:54 pm
+        </span>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="ion-float-right">
+    <ion-card-content>
+      Message
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-item>
+      <ion-textarea auto-grow class="message input" rows="1"></ion-textarea>
+      <ion-button expand="block" fill="clear" type="submit" color="primary" class="msg-btn">
+        <ion-icon name='ios-send' slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

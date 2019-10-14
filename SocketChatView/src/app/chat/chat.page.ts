@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-chat',
@@ -7,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatPage implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { 
+
+    console.log(route.snapshot.paramMap.get('userId'))
+  }
 
   ngOnInit() {
+   
   }
 
 }

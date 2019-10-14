@@ -4,9 +4,15 @@ const jwt = require('jsonwebtoken');
 
 module.exports = {
     create: (req,res,next)=> {
-        userModel.create({name:req.body.name,email:req.body.email,password:req.body.password},(err,result)=>{
+        userModel.create({name:req.body.username,email:req.body.email,password:req.body.password,status:true},(err,result)=>{
             if(err)
-                next(err);
+                {
+                    next(err);
+                    // console.log(err);
+                    console.log(req.body.username)
+                    console.log(req.body.email)
+                    console.log(req.body.password)
+                }
             else
                 res.json({status:"success",message:"User Registration Successful",data:null});
         });
@@ -35,7 +41,7 @@ module.exports = {
             }
             else{
                 for (let user of users){
-                    userList.push({id: user._id,name:user.name,online:user.status})
+                    userList.push({id: user._id,name:user.name,password:user.password,status:user.status})
                 }
                 res.json({status:'success',message:'users found',data:{users:userList}});
             }

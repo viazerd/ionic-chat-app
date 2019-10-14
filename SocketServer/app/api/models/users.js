@@ -25,15 +25,15 @@ const UserSchema = new Schema({
         type:Date,
     },
     status:{
-        type:Boolean
+        type:Boolean 
     }
 });
 
 //Hashing user password before pushing into database
 
-UserSchema.pre('save',(next)=>{
-    this.password = bcrypt.hashSync(this.password,saltRounds);
+UserSchema.pre('save', function(next){
+    this.password = bcrypt.hashSync(this.password, saltRounds);
     next();
-});
+    });
 
 module.exports = mongoose.model('User',UserSchema);

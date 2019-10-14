@@ -15,7 +15,8 @@ mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection 
 
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: false,
+    useNewUrlParser: true
 }));
 
 app.get('/', (req, res) => {

@@ -4,18 +4,24 @@ const jwt = require('jsonwebtoken');
 
 module.exports = {
     create: (req,res,next)=> {
-        userModel.create({name:req.body.username,email:req.body.email,password:req.body.password,status:true},(err,result)=>{
-            if(err)
-                {
-                    next(err);
-                    // console.log(err);
-                    console.log(req.body.username)
-                    console.log(req.body.email)
-                    console.log(req.body.password)
-                }
-            else
-                res.json({status:"success",message:"User Registration Successful",data:null});
-        });
+        userModel.find({email:req.body.email},function(err,data){
+            if(data.length){
+                res.json({status:'error',message:'user already regsitered'})
+            }else{
+                userModel.create({name:req.body.username,email:req.body.email,password:req.body.password,status:true},(err,result)=>{
+                    if(err)
+                        {
+                            next(err);
+                            // console.log(err);
+                            console.log(req.body.username)
+                            console.log(req.body.email)
+                            console.log(req.body.password)
+                        }
+                    else
+                        res.json({status:"success",message:"User Registration Successful",data:null});
+                });
+            }
+        })
     },
 
     authenticate: (req,res,next) =>{

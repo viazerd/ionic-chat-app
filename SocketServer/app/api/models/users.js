@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-
 //Defining the Schema
 const Schema = mongoose.Schema;
 
@@ -30,7 +29,15 @@ const UserSchema = new Schema({
     token:{
         type:String,
         trim:true
-    }
+    },
+    sent_messages:[{
+        receiver:String,
+        message:[String]
+    }],
+    received_messages:[{
+        sender:String,
+        message:[String]
+    }]
 });
 
 //Hashing user password before pushing into database

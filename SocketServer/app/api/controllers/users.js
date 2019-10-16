@@ -33,7 +33,7 @@ module.exports = {
             else{
                 if(bcrypt.compareSync(req.body.password,userInfo.password)){
                     const token = jwt.sign({id:userInfo._id},req.app.get('secretKey'),{expiresIn:'1h'});
-                    userModel.findOneAndUpdate(req.body.email,{token:token},function(err,userInfo){
+                    userModel.findOneAndUpdate(req.body.email,{token:token,last_login:Date.now()},function(err,userInfo){
                     res.json({status:"success",message:"User Found!!",data:{user:userInfo, token:token}});
                     })
                 } else{
@@ -64,12 +64,43 @@ module.exports = {
             }
             else{
                 for (let user of users){
-                    userList.push({id: user._id,name:user.name,password:user.password,status:user.status,token:user.token})
+                    userList.push({id: user._id,email: user.email,name:user.name,password:user.password,status:user.status,token:user.token,last_login:user.last_login,sent_messages:user.sent_messages,received_messages:user.received_messages})
                 }
-                res.json({status:'success',message:'users found',data:{users:userList}});
+                res.json({status:'success',message:'users found',data:userList});
             }
         })
+    },
+
+    getUser:(req,res,next) =>{
+        userModel.findById(req.params.userId,function(err,userInfo){
+            if(err){
+                next(err);
+            }else{
+                res.json({status:"success",message:"User Found",data:userInfo});
+            }
+        })
+    },
+    sendMessage:(req,res,next)=>{
+        userModel.findOne({email:req.body.sender},function(err,userInfo){
+            
+          if(err){
+              next(err);
+          }else{
+               if(userInfo.sent_messages.length > 0){
+
+               }else{
+                    userModel.findOneAndUpdate({email:req.body.sender},{sent_messages:{receiver:req.body.receiver,message:req.body.message}},function(err,data){
+                        if(err){
+                            next(err)
+                        }else{
+                            res.json({status:"success",message:"message sent",data});
+                        }
+                    });
+               } 
+          }
+        })
     }
+
 
 
 }
